@@ -6,6 +6,7 @@ package configuration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ public class Configuration {
            configuration = new Properties();
            configuration.load(new FileInputStream("C:\\Users\\Aleksa\\Documents\\NetBeansProjects\\Projektovanje sotvera - seminarski\\PSProjectServer\\config\\config.properties"));
        } catch (FileNotFoundException ex) {
+           ex.printStackTrace();
            Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
        }
    }
@@ -34,6 +36,20 @@ public class Configuration {
         }
         return instance;
     }
+
+   public String getProperty(String key){
+   return configuration.getProperty(key, "n/a");
+   }
    
+   public void setProperty(String key, String value){
+   configuration.setProperty(key, value);
+   }
    
+   public void saveChanges(){
+   try{
+        configuration.store(new FileOutputStream("C:\\Users\\Aleksa\\Documents\\NetBeansProjects\\Projektovanje sotvera - seminarski\\PSProjectServer\\config\\config.properties"),null);
+   }catch(IOException ex){
+   ex.printStackTrace();
+   }
+   }
 }

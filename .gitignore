@@ -1,0 +1,26 @@
+# Build folderi i NetBeans privatni folderi za oba podprojekta
+PSProjectCommon/build/
+PSProjectCommon/nbproject/private/
+PSProjectServer/build/
+PSProjectServer/nbproject/private/
+
+# Java compiled files
+*.class
+
+# IDE folderi (NetBeans, IntelliJ, VSCode)
+nbproject/private/
+.idea/
+.vscode/
+
+# Maven i Gradle build folderi
+target/
+build/
+
+# OS fajlovi
+.DS_Store
+Thumbs.db
+
+# Log i temp fajlovi
+*.log
+*.tmp
+*.temp

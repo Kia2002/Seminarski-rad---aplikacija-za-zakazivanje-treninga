@@ -20,7 +20,7 @@ public class DbRepositoryGeneric implements DbRepository<AbstractDomainObject>{
     @Override
     public List<AbstractDomainObject> getAll(AbstractDomainObject param, String uslov) throws Exception {
         List<AbstractDomainObject> lista = new LinkedList<>();
-        String query = "SELECT FROM " + param.vratiNazivTabele();
+        String query = "SELECT * FROM " + param.vratiNazivTabele();
         if(uslov != null){
         query+=uslov;
         }

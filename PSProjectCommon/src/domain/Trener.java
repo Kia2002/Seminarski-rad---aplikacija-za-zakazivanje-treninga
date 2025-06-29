@@ -118,17 +118,15 @@ public class Trener implements AbstractDomainObject{
             return false;
         }
         final Trener other = (Trener) obj;
-        if (!Objects.equals(this.ime, other.ime)) {
-            return false;
-        }
-        if (!Objects.equals(this.prezime, other.prezime)) {
-            return false;
-        }
         if (!Objects.equals(this.korisnickoIme, other.korisnickoIme)) {
             return false;
         }
         return Objects.equals(this.sifra, other.sifra);
     }
+
+    
+
+    
 
     @Override
     public String vratiNazivTabele() {
@@ -140,12 +138,12 @@ public class Trener implements AbstractDomainObject{
         List<AbstractDomainObject> treneri = new LinkedList<>();
         while (rs.next()) {
                 
-                Long id = rs.getLong("trener.idTrener");
-               String ime = rs.getString("trener.ime");
-               String prezime = rs.getString("trener.prezime");
-               String username = rs.getString("trener.korisnickoIme");
-               String pass = rs.getString("trener.sifra");
-               String email = rs.getString("trener.email");
+                Long id = rs.getLong("idTrener");
+               String ime = rs.getString("ime");
+               String prezime = rs.getString("prezime");
+               String username = rs.getString("korisnickoIme");
+               String pass = rs.getString("sifra");
+               String email = rs.getString("email");
                Trener trener = new Trener(id,ime,prezime,username,pass,email);
                 treneri.add(trener);
             }
@@ -165,7 +163,7 @@ public String vratiVrednostiZaUbacivanje() {
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "trener.idTrener=" + idTrener;
+        return "idTrener=" + idTrener;
     }
 
     @Override

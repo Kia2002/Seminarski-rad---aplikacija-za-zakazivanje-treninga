@@ -4,10 +4,13 @@
  */
 package threads;
 
+import communication.Operation;
 import communication.Receiver;
 import communication.Request;
 import communication.Response;
 import communication.Sender;
+import controller.Controller;
+import domain.Trener;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -38,6 +41,11 @@ public class HandleClientThread extends Thread{
                 Request request = (Request) receiver.receive();
                 Response response = new Response();
                 switch(request.getOperation()){
+                    case LOGIN:
+                        Trener t = (Trener) request.getParameter();
+                        t = Controller.getInstance().login(t);
+                        response.setResponse(t);
+                        break;
                     //
                     //
                     //

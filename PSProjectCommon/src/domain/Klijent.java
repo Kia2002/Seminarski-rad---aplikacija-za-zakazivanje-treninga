@@ -14,7 +14,7 @@ import java.util.Objects;
  *
  * @author Aleksa
  */
-public class Klijent implements AbstractDomainObject{
+public class Klijent implements ApstraktniDomenskiObjekat{
     private Long idKlijent;
     private String ime;
     private String prezime; 
@@ -124,8 +124,8 @@ public class Klijent implements AbstractDomainObject{
     }
 
     @Override
-    public List<AbstractDomainObject> vratiListu(ResultSet rs) throws Exception {
-        /*List<AbstractDomainObject> klijenti = new LinkedList<>();
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> klijenti = new LinkedList<>();
         
         
        while (rs.next()) {
@@ -136,13 +136,12 @@ public class Klijent implements AbstractDomainObject{
                String email = rs.getString("email");
                NivoFizickeSpreme nivo = new NivoFizickeSpreme();
         nivo.setIdNivoFizickeSpreme(rs.getLong("idNivoFizickeSpreme"));
-        nivo.setNivo(rs.getString("n.nivo"));
+        nivo.setNivo(rs.getString("nivo"));
                Klijent klijent = new Klijent(id,ime,prezime,email,nivo);
                 klijenti.add(klijent);
             }
         
-        return klijenti; */
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return klijenti; 
 
     }
 
@@ -163,7 +162,7 @@ public String vratiVrednostiZaUbacivanje() {
     }
 
     @Override
-    public AbstractDomainObject vratiObjekatIzRS(ResultSet rs) throws Exception {
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

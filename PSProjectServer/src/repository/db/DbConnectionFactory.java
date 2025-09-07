@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package repository.db;
-import configuration.Configuration;
+import konfiguracija.Konfiguracija;
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
@@ -21,9 +21,9 @@ public class DbConnectionFactory {
         
         try {
             if(connection == null || connection.isClosed()){
-            String url = Configuration.getInstance().getProperty("url");
-            String user = Configuration.getInstance().getProperty("user");
-            String pass = Configuration.getInstance().getProperty("password");
+            String url = Konfiguracija.getInstance().getProperty("url");
+            String user = Konfiguracija.getInstance().getProperty("user");
+            String pass = Konfiguracija.getInstance().getProperty("password");
             connection = DriverManager.getConnection(url,user,pass);
             connection.setAutoCommit(false);
             }

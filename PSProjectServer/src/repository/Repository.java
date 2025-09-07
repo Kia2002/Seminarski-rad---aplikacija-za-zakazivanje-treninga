@@ -17,6 +17,6 @@ public interface Repository<T> {
     void edit(T param) throws Exception;
     void delete(T param) throws Exception;
     List<T> getAll();
-    
+    T get(T param, String uslov) throws Exception;
     
 }

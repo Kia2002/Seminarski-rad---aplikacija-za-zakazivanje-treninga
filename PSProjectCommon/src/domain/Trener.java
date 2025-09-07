@@ -14,7 +14,7 @@ import java.util.Objects;
  *
  * @author Aleksa
  */
-public class Trener implements AbstractDomainObject{
+public class Trener implements ApstraktniDomenskiObjekat{
     private Long idTrener;
     private String ime;
     private String prezime;
@@ -134,8 +134,8 @@ public class Trener implements AbstractDomainObject{
     }
 
     @Override
-    public List<AbstractDomainObject> vratiListu(ResultSet rs) throws Exception {
-        List<AbstractDomainObject> treneri = new LinkedList<>();
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> treneri = new LinkedList<>();
         while (rs.next()) {
                 
                 Long id = rs.getLong("idTrener");
@@ -167,7 +167,7 @@ public String vratiVrednostiZaUbacivanje() {
     }
 
     @Override
-    public AbstractDomainObject vratiObjekatIzRS(ResultSet rs) throws Exception {
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

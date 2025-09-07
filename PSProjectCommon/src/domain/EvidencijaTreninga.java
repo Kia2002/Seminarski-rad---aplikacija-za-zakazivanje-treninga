@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Aleksa
  */
-public class EvidencijaTreninga implements AbstractDomainObject{
+public class EvidencijaTreninga implements ApstraktniDomenskiObjekat{
     private Long idEvidencijaTreninga;
     private Long ukupnaCena;
     private Trener trener;
@@ -129,7 +129,7 @@ public class EvidencijaTreninga implements AbstractDomainObject{
     }
 
     @Override
-    public List<AbstractDomainObject> vratiListu(ResultSet rs) throws Exception {
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -149,7 +149,7 @@ public class EvidencijaTreninga implements AbstractDomainObject{
     }
 
     @Override
-    public AbstractDomainObject vratiObjekatIzRS(ResultSet rs) throws Exception {
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

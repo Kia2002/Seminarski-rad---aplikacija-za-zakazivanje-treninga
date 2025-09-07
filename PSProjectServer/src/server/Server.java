@@ -7,55 +7,78 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import threads.HandleClientThread;
+import niti.ObradaKlijentskihZahteva;
 
 /**
  *
  * @author Aleksa
  */
-public class Server extends Thread{
-    boolean end = false;
-    ServerSocket serverSocket;
-    List<HandleClientThread> clients;
-    
-    public Server(){
-        clients = new LinkedList<>();
+    // ====== Server.java ======
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Server extends Thread {
+    private boolean kraj = false;
+    private ServerSocket serverSocket;
+    private List<ObradaKlijentskihZahteva> klijenti;
+
+    public Server() {
+        klijenti = new ArrayList<>();
     }
 
     @Override
     public void run() {
-       
         try {
             serverSocket = new ServerSocket(9000);
-            while(!end){
-            Socket s = serverSocket.accept();
-            System.out.println("Client is connected!");
+            while (!kraj) {
+                try {
+                    Socket s = serverSocket.accept();
+                    System.out.println("Klijent je povezan.");
 
-            HandleClientThread hct = new HandleClientThread(s);
-            clients.add(hct);
-            hct.start();
-    }
+                    ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(s);
+                    klijenti.add(okz);
+                    okz.start();
+
+                } catch (IOException e) {
+                    if (kraj) {
+                        System.out.println("Server je zaustavljen.");
+                    } else {
+                        e.printStackTrace();
+                    }
+                }
+            }
         } catch (IOException ex) {
+            ex.printStackTrace();
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
     }
-    
-    
-    
-    public void stopServer(){
-    end = true;
+
+    public void zaustaviServer() {
+        kraj = true;
         try {
-            for(HandleClientThread c : clients){
-            c.stopp();
+            
+            for (ObradaKlijentskihZahteva k : klijenti) {
+                k.prekini();
             }
-            serverSocket.close();
+
+            
+            if (serverSocket != null && !serverSocket.isClosed()) {
+                serverSocket.close();
+            }
+
         } catch (IOException ex) {
-            //ex.printStackTrace();
+            ex.printStackTrace();
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

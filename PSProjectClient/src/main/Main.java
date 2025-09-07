@@ -4,7 +4,7 @@
  */
 package main;
 
-import controller.Controller;
+import kordinator.Kordinator;
 
 /**
  *
@@ -12,7 +12,7 @@ import controller.Controller;
  */
 public class Main {
     public static void main(String[] args) {
-        Controller.getInstance().openLoginForm();
+        Kordinator.getInstance().otvoriLoginFormu();
        
     }
 }

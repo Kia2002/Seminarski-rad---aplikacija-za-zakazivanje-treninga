@@ -14,7 +14,7 @@ import java.util.Objects;
  *
  * @author Aleksa
  */
-public class NivoFizickeSpreme implements AbstractDomainObject{
+public class NivoFizickeSpreme implements ApstraktniDomenskiObjekat{
     private Long idNivoFizickeSpreme;
     private String nivo;
     private String opis;
@@ -92,8 +92,8 @@ public class NivoFizickeSpreme implements AbstractDomainObject{
     }
 
     @Override
-    public List<AbstractDomainObject> vratiListu(ResultSet rs) throws Exception {
-        List<AbstractDomainObject> nivoi = new LinkedList<>();
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> nivoi = new LinkedList<>();
         
         while (rs.next()) {
                 
@@ -124,7 +124,7 @@ public String vratiVrednostiZaUbacivanje() {
     }
 
     @Override
-    public AbstractDomainObject vratiObjekatIzRS(ResultSet rs) throws Exception {
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

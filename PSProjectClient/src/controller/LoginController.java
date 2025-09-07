@@ -4,9 +4,10 @@
  */
 package controller;
 
-import communication.Communication;
+import komunikacija.Komunikacija;
+import kordinator.Kordinator;
 import domain.Trener;
-import forms.FrmLogin;
+import forme.LoginForma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -20,31 +21,32 @@ import javax.swing.SwingUtilities;
  * @author Aleksa
  */
 public class LoginController {
-    private final FrmLogin lf;
+    private final LoginForma lf;
 
-    public LoginController(FrmLogin lf) {
+    public LoginController(LoginForma lf) {
         this.lf = lf;
-        init();
+        addActionListener();
     }
 
-    private void init() {
-        lf.loginAddActionListener(e -> prijava());
+    private void addActionListener() {
+        lf.loginAddActionListener(e -> login());
     }
 
-    private void prijava() {
+    private void login() {
         try {
             String username = lf.getTxtUsername().getText().trim();
             String password = String.valueOf(lf.getTxtPassword().getPassword()).trim();
 
-            Communication.getInstance().connection();
-            Trener ulogovani = Communication.getInstance().login(username, password);
+            Komunikacija.getInstance().connection();
+            Trener ulogovani = Komunikacija.getInstance().login(username, password);
 
             if (ulogovani == null) {
-                JOptionPane.showMessageDialog(lf, "Uneli ste pogrešne kredencijale!", "Greška", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra nisu ispravni!", "Greška", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(lf, "Prijava uspešna!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                Kordinator.getInstance().setUlogovani(ulogovani);
+                JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra su ispravni!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
 
-                
+                Kordinator.getInstance().otvoriGlavnuFormu();
                 SwingUtilities.getWindowAncestor(lf).setVisible(false);
 
                 
@@ -55,7 +57,7 @@ public class LoginController {
         }
     }
 
-    public void openForm() {
+    public void otvoriFormu() {
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(lf);

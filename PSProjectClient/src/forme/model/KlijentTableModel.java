@@ -5,8 +5,10 @@
 package forme.model;
 
 import domain.Klijent;
+import domain.NivoFizickeSpreme;
 import domain.Termin;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -64,5 +66,16 @@ if (klijenti == null) {
     }
     public Klijent getKlijent(int row) {
         return klijenti.get(row);
+    }
+
+    public void pretrazi(String ime, String prezime, String email, NivoFizickeSpreme nivo) {
+        List<Klijent> filteredList = klijenti.stream()
+            .filter(k -> (ime == null || ime.isEmpty() || k.getIme().toLowerCase().contains(ime.toLowerCase())))
+            .filter(k -> (prezime == null || prezime.isEmpty() || k.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+            .filter(k -> (email == null || email.isEmpty() || k.getEmail().toLowerCase().contains(email.toLowerCase())))
+            .filter(k -> (nivo == null || nivo.getNivo().equals("Odaberite nivo fizičke spreme") || k.getNivoFizickeSpreme().equals(nivo)))
+            .collect(Collectors.toList());
+        this.klijenti = filteredList;
+        fireTableDataChanged();
     }
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import kordinator.Kordinator;
 
 /**
  *
@@ -103,4 +104,18 @@ public class Komunikacija {
         nivoi = (List<NivoFizickeSpreme>) odg.getOdgovor();
         return nivoi;
        }
+
+    public void azurirajKlijenta(Klijent k) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_KLIJENTA, k);
+        posiljalac.posalji(zahtev);
+         Odgovor odgovor = (Odgovor) primalac.primi();
+        if(odgovor.getOdgovor()==null){
+            System.out.println("USPEŠNO");
+            Kordinator.getInstance().osveziFormu();
+        }else{
+            Exception e = (Exception) odgovor.getOdgovor();
+            throw e;
+        }
+        
+    }
 }

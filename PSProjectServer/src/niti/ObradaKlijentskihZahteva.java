@@ -89,9 +89,25 @@ public void run() {
                             controller.Controller.getInstance().dodajKlijenta(klijent);
                             odgovor.setOdgovor(null);
 
-                        } catch (KlijentVecPostojiException pvp) {
+                        } catch (KlijentVecPostojiException kvp) {
 
-                            odgovor.setOdgovor(pvp);
+                            odgovor.setOdgovor(kvp);
+
+                        } catch (Exception excp) {
+
+                            odgovor.setOdgovor(excp);
+                        }
+                        break;
+                        
+                        case AZURIRAJ_KLIJENTA:
+                        Klijent aKlijent = (Klijent) zahtev.getParametar();
+                        try {
+                            controller.Controller.getInstance().azurirajKlijenta(aKlijent);
+                            odgovor.setOdgovor(null);
+
+                        } catch (KlijentVecPostojiException kvp) {
+
+                            odgovor.setOdgovor(kvp);
 
                         } catch (Exception excp) {
 

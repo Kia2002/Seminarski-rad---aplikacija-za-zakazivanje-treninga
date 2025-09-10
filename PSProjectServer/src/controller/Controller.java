@@ -7,7 +7,9 @@ package controller;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
 import domain.Trener;
+import exception.KlijentVecPostojiException;
 import java.util.List;
+import operacije.klijent.AzurirajKlijentaSO;
 import operacije.klijent.KreirajKlijentaSO;
 import operacije.klijent.ObrisiKlijentaSO;
 import operacije.klijent.UcitajKlijenteSO;
@@ -60,6 +62,11 @@ public class Controller {
         operacija.izvrsi(null, null);
         System.out.println("KLASA CONTROLLER: "+operacija.getNivoi());
         return operacija.getNivoi();
+    }
+
+    public void azurirajKlijenta(Klijent aKlijent) throws Exception{
+        AzurirajKlijentaSO operacija = new AzurirajKlijentaSO();
+        operacija.izvrsi(aKlijent, null);
     }
     
 }

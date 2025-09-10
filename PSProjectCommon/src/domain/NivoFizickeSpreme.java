@@ -62,29 +62,20 @@ public class NivoFizickeSpreme implements ApstraktniDomenskiObjekat{
         return nivo;
     }
 
+   
+
+   @Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    NivoFizickeSpreme other = (NivoFizickeSpreme) obj;
+    return Objects.equals(this.idNivoFizickeSpreme, other.idNivoFizickeSpreme);
+}
     @Override
     public int hashCode() {
-        int hash = 3;
-        return hash;
+    return Objects.hash(idNivoFizickeSpreme);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final NivoFizickeSpreme other = (NivoFizickeSpreme) obj;
-        if (!Objects.equals(this.nivo, other.nivo)) {
-            return false;
-        }
-        return Objects.equals(this.opis, other.opis);
-    }
 
     @Override
     public String vratiNazivTabele() {

@@ -4,9 +4,12 @@
  */
 package forme;
 
+import domain.NivoFizickeSpreme;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,6 +22,10 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
      */
     public PrikazKlijenataForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        setTitle("Klijent");
     }
 
     public JButton getBtnObrisi() {
@@ -37,6 +44,54 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
         this.tblKlijent = tblKlijent;
     }
 
+    public JButton getBtnAzuriraj() {
+        return btnAzuriraj;
+    }
+
+    public void setBtnAzuriraj(JButton btnAzuriraj) {
+        this.btnAzuriraj = btnAzuriraj;
+    }
+
+    public JButton getBtnPretrazi() {
+        return btnPretrazi;
+    }
+
+    public void setBtnPretrazi(JButton btnPretrazi) {
+        this.btnPretrazi = btnPretrazi;
+    }
+
+    public JComboBox<NivoFizickeSpreme> getCmbNivo() {
+        return cmbNivo;
+    }
+
+    public void setCmbNivo(JComboBox<NivoFizickeSpreme> cmbNivo) {
+        this.cmbNivo = cmbNivo;
+    }
+
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public void setTxtEmail(JTextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+
+    public JTextField getTxtIme() {
+        return txtIme;
+    }
+
+    public void setTxtIme(JTextField txtIme) {
+        this.txtIme = txtIme;
+    }
+
+    public JTextField getTxtPrezime() {
+        return txtPrezime;
+    }
+
+    public void setTxtPrezime(JTextField txtPrezime) {
+        this.txtPrezime = txtPrezime;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +104,17 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKlijent = new javax.swing.JTable();
         btnObrisi = new javax.swing.JButton();
+        btnAzuriraj = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtIme = new javax.swing.JTextField();
+        txtPrezime = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        cmbNivo = new javax.swing.JComboBox<>();
+        btnPretrazi = new javax.swing.JButton();
+        btnResetuj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,31 +133,80 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
 
         btnObrisi.setText("Obrisi");
 
+        btnAzuriraj.setText("Azuriraj");
+
+        jLabel1.setText("Ime:");
+
+        jLabel2.setText("Prezime:");
+
+        jLabel3.setText("Email:");
+
+        jLabel4.setText("Nivo fizičke spreme:");
+
+        btnPretrazi.setText("Pretrazi");
+
+        btnResetuj.setText("Resetuj");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(438, Short.MAX_VALUE)
-                .addComponent(btnObrisi)
-                .addGap(86, 86, 86))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAzuriraj)
+                    .addComponent(btnObrisi))
+                .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(86, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbNivo, 0, 185, Short.MAX_VALUE)
+                            .addComponent(txtEmail)
+                            .addComponent(txtPrezime)
+                            .addComponent(txtIme))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnResetuj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(281, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPretrazi))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cmbNivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResetuj))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnObrisi)
-                .addGap(63, 63, 63))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(69, 69, 69)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(107, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAzuriraj)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -103,12 +218,32 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAzuriraj;
     private javax.swing.JButton btnObrisi;
+    private javax.swing.JButton btnPretrazi;
+    private javax.swing.JButton btnResetuj;
+    private javax.swing.JComboBox<NivoFizickeSpreme> cmbNivo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblKlijent;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIme;
+    private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
 
     public void addBtnObrisiActionListener(ActionListener actionListener) {
         btnObrisi.addActionListener(actionListener);
+    }
+    public void addBtnAzurirajActionListener(ActionListener actionListener) {
+        btnAzuriraj.addActionListener(actionListener);
+    }
+    public void addBtnPretraziActionListener(ActionListener actionListener) {
+        btnPretrazi.addActionListener(actionListener);
+    }
+    public void addBtnResetujActionListener(ActionListener actionListener) {
+        btnResetuj.addActionListener(actionListener);
     }
 }

@@ -10,6 +10,7 @@ import repository.db.DbConnectionFactory;
 import repository.db.DbRepository;
 import java.sql.*;
 import domain.ApstraktniDomenskiObjekat;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,15 +36,17 @@ public class DbRepositoryGeneric implements DbRepository<ApstraktniDomenskiObjek
     }
 
     @Override
-    public void add(ApstraktniDomenskiObjekat param) throws Exception {
-        String query = "INSERT INTO " + param.vratiNazivTabele() + " (" + param.vratiKoloneZaUbacivanje() + 
-                 " ) VALUES ( " + param.vratiVrednostiZaUbacivanje() + " )";
-        System.out.println(query);
-         Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
-         st.executeUpdate(query);
-         st.close();
-        
-    }
+public PreparedStatement add(ApstraktniDomenskiObjekat param) throws Exception {
+    String query = "INSERT INTO " + param.vratiNazivTabele() + 
+                   " (" + param.vratiKoloneZaUbacivanje() + ") VALUES (" +
+                   param.vratiVrednostiZaUbacivanje() + ")";
+    System.out.println(query); // za debug
+    PreparedStatement ps = DbConnectionFactory.getInstance()
+                             .getConnection()
+                             .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+    ps.executeUpdate();
+    return ps; 
+}
 
     @Override
 public void edit(ApstraktniDomenskiObjekat param) throws Exception {
@@ -92,8 +95,12 @@ public void edit(ApstraktniDomenskiObjekat param) throws Exception {
     
     @Override
     public List<ApstraktniDomenskiObjekat> getAll() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
+            List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        
+        
+        
+        return lista;
     }
     
 }

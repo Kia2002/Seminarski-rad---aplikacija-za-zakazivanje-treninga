@@ -8,10 +8,11 @@ import domain.Klijent;
 import domain.NivoFizickeSpreme;
 import domain.Trener;
 import forme.FormaMod;
+import static forme.FormaMod.IZMENI;
 
 import forme.KreirajKlijentaForma;
 import forme.PrikazKlijenataForma;
-import forme.model.KlijentTableModel;
+import forme.model.ModelTabeleKlijent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -33,7 +34,7 @@ public class KreirajKlijentaController {
     }
 
     public void otvoriFormu(FormaMod mod) throws Exception {
-        //pripremiFormu();
+      
         pripremiFormu(mod);
         dkf.setVisible(true);
     } 
@@ -52,40 +53,40 @@ public class KreirajKlijentaController {
 
                 
                 if(ime.isEmpty() && prezime.isEmpty() && email.isEmpty()){
-                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da kreira klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da kreira klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if(ime.isEmpty()){
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete ime klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete ime klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (!ime.matches("[a-zA-ZšđčćžŠĐČĆŽ\\s]+") || ime.length() <= 2) {
-                    JOptionPane.showMessageDialog(dkf, "Ime koje ste uneli nije odgovarajuće.", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Ime koje ste uneli nije odgovarajuće.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (prezime.isEmpty()) {
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete prezime klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete prezime klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (!prezime.matches("[a-zA-ZšđčćžŠĐČĆŽ\\s]+") || prezime.length() <= 2) {
-                    JOptionPane.showMessageDialog(dkf, "Prezime koje ste uneli nije odgovarajuće.", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Prezime koje ste uneli nije odgovarajuće.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (email.isEmpty()) {
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete email klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete email klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (!email.contains("@")) {
-                    JOptionPane.showMessageDialog(dkf, "Email nije u odgovarajućem formatu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Email nije u odgovarajućem formatu", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 NivoFizickeSpreme nivo = (NivoFizickeSpreme) dkf.getCmbNivo().getSelectedItem();
                 if (nivo == null || nivo.getNivo().equals("Odaberite nivo")) {
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da selektujete nivo fizičke spreme.", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da selektujete nivo fizičke spreme.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -94,10 +95,10 @@ public class KreirajKlijentaController {
               
                 try {
                     Komunikacija.getInstance().dodajKlijenta(k);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao klijenta.", "USPEŠNO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 }  catch(Exception ex) {
-                    JOptionPane.showMessageDialog(dkf, ex.getMessage(), "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, ex.getMessage(), "Neuspešno", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -116,40 +117,40 @@ public class KreirajKlijentaController {
 
                 
                 if(ime.isEmpty() && prezime.isEmpty() && email.isEmpty()){
-                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da kreira klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da zapamti klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if(ime.isEmpty()){
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete ime klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete ime klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (!ime.matches("[a-zA-ZšđčćžŠĐČĆŽ\\s]+") || ime.length() <= 2) {
-                    JOptionPane.showMessageDialog(dkf, "Ime koje ste uneli nije odgovarajuće.", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Ime koje ste uneli nije odgovarajuće.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (prezime.isEmpty()) {
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete prezime klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete prezime klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (!prezime.matches("[a-zA-ZšđčćžŠĐČĆŽ\\s]+") || prezime.length() <= 2) {
-                    JOptionPane.showMessageDialog(dkf, "Prezime koje ste uneli nije odgovarajuće.", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Prezime koje ste uneli nije odgovarajuće.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (email.isEmpty()) {
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete email klijenta.", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da unesete email klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (!email.contains("@")) {
-                    JOptionPane.showMessageDialog(dkf, "Email nije u odgovarajućem formatu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Email nije u odgovarajućem formatu", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 NivoFizickeSpreme nivo = (NivoFizickeSpreme) dkf.getCmbNivo().getSelectedItem();
                 if (nivo == null || nivo.getNivo().equals("Odaberite nivo")) {
-                    JOptionPane.showMessageDialog(dkf, "Potrebno je da selektujete nivo fizičke spreme.", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Potrebno je da selektujete nivo fizičke spreme.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -158,10 +159,10 @@ public class KreirajKlijentaController {
               
                 try {
                     Komunikacija.getInstance().azurirajKlijenta(k);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio klijenta.", "USPEŠNO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 }  catch(Exception ex) {
-                    JOptionPane.showMessageDialog(dkf, ex.getMessage(), "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, ex.getMessage(), "Neuspešno", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -216,7 +217,27 @@ public class KreirajKlijentaController {
                 dkf.getTxtId().setText(k.getIdKlijent()+"");
                 dkf.getTxtId().setEnabled(false);
                 break;
+        case DETALJI:
+        List<NivoFizickeSpreme> lista2 = Komunikacija.getInstance().ucitajNivoe();
         
+        for (NivoFizickeSpreme n : lista2) {
+            dkf.getCmbNivo().addItem(n);
+        }
+                dkf.getBtnAzuriraj().setVisible(false);
+                dkf.getBtnDodaj().setVisible(false);
+                dkf.getBtnAzuriraj().setEnabled(false);
+                Klijent k2 = (Klijent) kordinator.Kordinator.getInstance().vratiParam("klijent");
+                dkf.getTxtIme().setText(k2.getIme());
+                dkf.getTxtPrezime().setText(k2.getPrezime());
+                dkf.getTxtEmail().setText(k2.getEmail());
+                dkf.getCmbNivo().setSelectedItem(k2.getNivoFizickeSpreme());
+                dkf.getTxtId().setText(k2.getIdKlijent()+"");
+                dkf.getTxtId().setEnabled(false);
+                dkf.getTxtIme().setEnabled(false);
+                dkf.getTxtPrezime().setEnabled(false);
+                dkf.getTxtEmail().setEnabled(false);
+                dkf.getCmbNivo().setEnabled(false);
+                break;
         }
     }
 }

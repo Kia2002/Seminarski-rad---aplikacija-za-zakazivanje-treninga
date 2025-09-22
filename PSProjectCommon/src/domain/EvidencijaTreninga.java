@@ -1,6 +1,7 @@
 package domain;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat{
     private Long ukupnaCena;
     private Trener trener;
     private Klijent klijent;
-    private List<StavkaEvidencijeTreninga> stavke;
+    private List<StavkaEvidencijeTreninga> stavke = new ArrayList<>();
 
     public EvidencijaTreninga(Long idEvidencijaTreninga, Long ukupnaCena, Trener trener, Klijent klijent) {
         this.idEvidencijaTreninga = idEvidencijaTreninga;
@@ -130,7 +131,34 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat{
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+
+            Long klijentID = rs.getLong("klijent.idKlijent");
+            String imeKlijent = rs.getString("klijent.ime");
+            String prezimeKlijent = rs.getString("klijent.prezime");
+            String emailKlijent = rs.getString("klijent.email");
+           
+            NivoFizickeSpreme nivo = new NivoFizickeSpreme(rs.getLong("nivofizickespreme.idNivoFizickeSpreme"), rs.getString("nivofizickespreme.nivo"), rs.getString("nivofizickespreme.opis"));
+
+            Klijent k = new Klijent(klijentID, imeKlijent, prezimeKlijent, emailKlijent, nivo);
+
+            Long trenerID = rs.getLong("trener.idTrener");
+            String imeTrener = rs.getString("trener.ime");
+            String prezimeTrener = rs.getString("trener.prezime");
+            String emailTrener = rs.getString("trener.email");
+            String korisnickoIme = rs.getString("trener.korisnickoIme");
+            String lozinka = rs.getString("trener.sifra");
+
+            Trener t = new Trener(trenerID, imeTrener, prezimeTrener,emailTrener,korisnickoIme, lozinka);
+
+           
+            EvidencijaTreninga evidencijaTreninga = new EvidencijaTreninga(rs.getLong("idEvidencijaTreninga"), rs.getLong("ukupnaCena"), t, k, stavke);
+            lista.add(evidencijaTreninga);
+
+        }
+
+        return lista;
     }
 
     @Override

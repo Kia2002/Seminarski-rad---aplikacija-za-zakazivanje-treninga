@@ -10,8 +10,11 @@ import komunikacija.Zahtev;
 import komunikacija.Odgovor;
 import komunikacija.Posiljalac;
 import controller.Controller;
+import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
+import domain.StavkaEvidencijeTreninga;
+import domain.Termin;
 import domain.Trener;
 import exception.KlijentVecPostojiException;
 import java.io.EOFException;
@@ -33,6 +36,9 @@ import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static komunikacija.Operacija.DODAJ_KLIJENTA;
+import static komunikacija.Operacija.UCITAJ_NIVOE;
+import static komunikacija.Operacija.UCITAJ_TRENERE;
 
 public class ObradaKlijentskihZahteva extends Thread {
     private Socket socket;
@@ -113,6 +119,37 @@ public void run() {
 
                             odgovor.setOdgovor(excp);
                         }
+                        break;
+                        case UCITAJ_EVIDENCIJE:
+                        List<EvidencijaTreninga> evidencijeTreninga = controller.Controller.getInstance().ucitajEvidencijeTreninga();  
+                        System.out.println("KLASA OKZ: "+evidencijeTreninga);
+                        odgovor.setOdgovor(evidencijeTreninga);
+                        break;
+                        case UCITAJ_STAVKE:
+                          List<StavkaEvidencijeTreninga> stavke = controller.Controller.getInstance().ucitajStavke((Long)zahtev.getParametar());  
+                        System.out.println("KLASA OKZ: "+stavke);
+                        odgovor.setOdgovor(stavke);
+                            
+                            break;
+                            case UCITAJ_TRENERE:
+                    List<Trener> treneri = Controller.getInstance().ucitajTrenere();
+                    odgovor.setOdgovor(treneri);
+                    break;
+                    case UCITAJ_TERMINE:
+                    List<Termin> termini = Controller.getInstance().ucitajTermine();
+                    odgovor.setOdgovor(termini);
+                    break;
+                    case DODAJ_EVIDENCIJU:
+                        try{
+                            EvidencijaTreninga ev = (EvidencijaTreninga) zahtev.getParametar();
+                        
+                            controller.Controller.getInstance().dodajEvidenciju(ev);
+                            odgovor.setOdgovor(null);
+                            } catch (Exception excp) {
+
+                            odgovor.setOdgovor(excp);
+                        }
+                        
                         break;
                 default:
                     System.out.println("GRESKA, NE POSTOJI OPERACIJA");

@@ -4,17 +4,25 @@
  */
 package controller;
 
+import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
+import domain.StavkaEvidencijeTreninga;
+import domain.Termin;
 import domain.Trener;
 import exception.KlijentVecPostojiException;
 import java.util.List;
+import operacije.evidencijaTreninga.KreirajEvidencijuTreningaSO;
+import operacije.evidencijaTreninga.UcitajEvidencijeTreningaSO;
+import operacije.evidencijaTreninga.UcitajStavkeSO;
 import operacije.klijent.AzurirajKlijentaSO;
 import operacije.klijent.KreirajKlijentaSO;
 import operacije.klijent.ObrisiKlijentaSO;
 import operacije.klijent.UcitajKlijenteSO;
 import operacije.login.LoginSO;
 import operacije.nivofizickespreme.UcitajNivoeSO;
+import operacije.termin.UcitajTermineSO;
+import operacije.trener.UcitajTrenereSO;
 
 /**
  *
@@ -67,6 +75,39 @@ public class Controller {
     public void azurirajKlijenta(Klijent aKlijent) throws Exception{
         AzurirajKlijentaSO operacija = new AzurirajKlijentaSO();
         operacija.izvrsi(aKlijent, null);
+    }
+
+    public List<EvidencijaTreninga> ucitajEvidencijeTreninga() throws Exception {
+        UcitajEvidencijeTreningaSO operacija = new UcitajEvidencijeTreningaSO();
+        operacija.izvrsi(null, null);
+        return operacija.getEvidencije();
+    }
+
+    public List<StavkaEvidencijeTreninga> ucitajStavke(Long id) throws Exception {
+        UcitajStavkeSO operacija = new UcitajStavkeSO();
+        operacija.izvrsi(id, null);
+        return operacija.getStavke();
+    }
+
+    public List<Trener> ucitajTrenere() throws Exception {
+        UcitajTrenereSO operacija =new UcitajTrenereSO();
+        operacija.izvrsi(null, null);
+        System.out.println("KLASA CONTROLLER: "+operacija.getTreneri());
+        return operacija.getTreneri();
+    }
+
+    public List<Termin> ucitajTermine() throws Exception {
+        UcitajTermineSO operacija =new UcitajTermineSO();
+        operacija.izvrsi(null, null);
+        System.out.println("KLASA CONTROLLER: "+operacija.getTermini());
+        return operacija.getTermini();
+    }
+
+    public void dodajEvidenciju(EvidencijaTreninga ev) throws Exception {
+        
+        KreirajEvidencijuTreningaSO operacija = new KreirajEvidencijuTreningaSO();
+        operacija.izvrsi(ev, null);
+    
     }
     
 }

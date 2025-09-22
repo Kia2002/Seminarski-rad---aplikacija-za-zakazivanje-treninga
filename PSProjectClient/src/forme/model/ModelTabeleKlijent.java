@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Aleksa
  */
-public class KlijentTableModel extends AbstractTableModel{
+public class ModelTabeleKlijent extends AbstractTableModel{
 private List<Klijent> klijenti;
     String[] columns = {"Id","Ime","Prezime","Email", "Nivo fizicke spreme"};
 
@@ -27,7 +27,7 @@ private List<Klijent> klijenti;
         this.klijenti = klijenti;
     }
 
-    public KlijentTableModel(List<Klijent> klijenti) {
+    public ModelTabeleKlijent(List<Klijent> klijenti) {
         this.klijenti = klijenti;
     }
         

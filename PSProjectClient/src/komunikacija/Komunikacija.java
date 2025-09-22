@@ -4,8 +4,11 @@
  */
 package komunikacija;
 
+import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
+import domain.StavkaEvidencijeTreninga;
+import domain.Termin;
 import domain.Trener;
 import java.io.IOException;
 import java.net.Socket;
@@ -13,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import kordinator.Kordinator;
 
 /**
@@ -118,4 +122,63 @@ public class Komunikacija {
         }
         
     }
+
+    public List<EvidencijaTreninga> ucitajEvidencijeTreninga() throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_EVIDENCIJE, null);
+        List<EvidencijaTreninga> evidencije = new ArrayList<>();
+           
+        posiljalac.posalji(zahtev);
+        ////
+        Odgovor odg = (Odgovor) primalac.primi();
+        evidencije = (List<EvidencijaTreninga>) odg.getOdgovor();
+        return evidencije;
+    }
+
+   
+
+    public List<StavkaEvidencijeTreninga> ucitajStakve(Long idEvidencijaTreninga) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE, idEvidencijaTreninga);
+        List<StavkaEvidencijeTreninga> stavke = new ArrayList<>();
+           
+        posiljalac.posalji(zahtev);
+        ////
+        Odgovor odg = (Odgovor) primalac.primi();
+        stavke = (List<StavkaEvidencijeTreninga>) odg.getOdgovor();
+        return stavke;
+    }
+
+    public List<Trener> ucitajTrenere() throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TRENERE,null);
+        List<Trener> treneri = new ArrayList<>();
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        treneri = (List<Trener>) odg.getOdgovor();
+        return treneri;
+    }
+
+    public List<Termin> ucitajTermine() throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TERMINE,null);
+        List<Termin> termini = new ArrayList<>();
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        termini = (List<Termin>) odg.getOdgovor();
+        return termini;
+    }
+
+    public void kreirajEvidenciju(EvidencijaTreninga ev) throws Exception {
+    Zahtev zahtev = new Zahtev(Operacija.DODAJ_EVIDENCIJU, ev);
+    posiljalac.posalji(zahtev);
+
+    Odgovor odgovor = (Odgovor) primalac.primi();
+    
+
+    if (odgovor.getOdgovor() == null) {
+        System.out.println("USPEŠNO");
+    } else {
+        Exception e = (Exception) odgovor.getOdgovor();
+        throw e;
+    }
+}
+
+        
 }

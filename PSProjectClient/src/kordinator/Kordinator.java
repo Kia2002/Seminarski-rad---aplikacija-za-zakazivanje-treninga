@@ -7,12 +7,16 @@ package kordinator;
 import controller.KreirajKlijentaController;
 import controller.LoginController;
 import controller.GlavnaFormaController;
+import controller.KreirajEvidencijuTreningaController;
+import controller.PrikazEvidencijaController;
 import controller.PrikazKlijenataController;
 import domain.Trener;
 import forme.FormaMod;
 import forme.KreirajKlijentaForma;
 import forme.LoginForma;
 import forme.GlavnaForma;
+import forme.KreirajEvidencijuTreningaForma;
+import forme.PrikazEvidencijaTreningaForma;
 import forme.PrikazKlijenataForma;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +33,8 @@ public class Kordinator {
     private PrikazKlijenataController pkController;
     private KreirajKlijentaController dkController;
     private Map<String, Object> parametri;
-            
-            
+    private PrikazEvidencijaController peController; 
+    private KreirajEvidencijuTreningaController keController;    
             
             
     private Kordinator() {
@@ -59,7 +63,10 @@ public class Kordinator {
         pkController = new PrikazKlijenataController(new PrikazKlijenataForma()); 
         pkController.otvoriFormu();
     }
-    
+    public void otvoriPrikazEvidencijaFormu() throws Exception {
+        peController = new PrikazEvidencijaController(new PrikazEvidencijaTreningaForma()); 
+        peController.otvoriFormu();
+    }
     public Trener getUlogovani() {
         return ulogovani;
     }
@@ -88,6 +95,22 @@ public class Kordinator {
 
     public void osveziFormu() throws Exception {
         pkController.osveziFormu();
+    }
+
+    public void otvoriDetaljiKlijentaFormu() throws Exception {
+        dkController = new KreirajKlijentaController(new KreirajKlijentaForma());
+    dkController.otvoriFormu(FormaMod.DETALJI);
+    }
+
+    public void otvoriKreirajEvidencijuForma() throws Exception {
+        keController = new KreirajEvidencijuTreningaController(new KreirajEvidencijuTreningaForma());
+        keController.otvoriFormu(FormaMod.DODAJ);
+    
+    }
+
+    public void otvoriDetaljiEvidencijeFormu() throws Exception {
+        keController = new KreirajEvidencijuTreningaController(new KreirajEvidencijuTreningaForma());
+    keController.otvoriFormu(FormaMod.DETALJI);
     }
 
     

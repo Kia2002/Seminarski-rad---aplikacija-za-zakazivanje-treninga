@@ -9,7 +9,7 @@ import domain.NivoFizickeSpreme;
 import domain.Trener;
 import forme.GlavnaForma;
 import forme.PrikazKlijenataForma;
-import forme.model.KlijentTableModel;
+import forme.model.ModelTabeleKlijent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -38,18 +38,18 @@ public class PrikazKlijenataController {
             public void actionPerformed(ActionEvent e) {
                 int red = pkf.getTblKlijent().getSelectedRow();
                 if(red==-1){
-                JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijenta.", "Greška", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                 }else{
                     
                         JOptionPane.showMessageDialog(pkf, "Sistem je našao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
-                        KlijentTableModel ktm  = (KlijentTableModel) pkf.getTblKlijent().getModel();
+                        ModelTabeleKlijent ktm  = (ModelTabeleKlijent) pkf.getTblKlijent().getModel();
                         Klijent k = ktm.getKlijenti().get(red);
                         try {
                         komunikacija.Komunikacija.getInstance().obrisiKlijenta(k);
                         JOptionPane.showMessageDialog(pkf, "Sistem je uspešno obrisao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE); 
                         pripremiFormu();
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(pkf, "Sistem ne može da obriše klijenta.", "Greška", JOptionPane.ERROR_MESSAGE); 
+                        JOptionPane.showMessageDialog(pkf, "Sistem ne može da obriše klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE); 
                     }
             }
             }
@@ -63,7 +63,7 @@ public class PrikazKlijenataController {
                 }else{
                     
                         JOptionPane.showMessageDialog(pkf, "Sistem je našao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
-                        KlijentTableModel ktm  = (KlijentTableModel) pkf.getTblKlijent().getModel();
+                        ModelTabeleKlijent ktm  = (ModelTabeleKlijent) pkf.getTblKlijent().getModel();
                         Klijent k = ktm.getKlijenti().get(red);
                         Kordinator.getInstance().dodajParam("klijent", k);
                     try {
@@ -82,13 +82,13 @@ public class PrikazKlijenataController {
                 String email = pkf.getTxtEmail().getText().trim();
                 NivoFizickeSpreme nivo = (NivoFizickeSpreme) pkf.getCmbNivo().getSelectedItem();
                 
-                KlijentTableModel mtk = (KlijentTableModel) pkf.getTblKlijent().getModel();
+                ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getTblKlijent().getModel();
                 mtk.pretrazi(ime,prezime,email, nivo);
                 
                 if (mtk.getKlijenti().isEmpty()) {
-                    JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijente po zadatim kriterijumima", "NEUSPEŠNO", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijente po zadatim kriterijumima.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(pkf, "Sistem je našao klijente po zadatim kriterijumima", "USPEŠNO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(pkf, "Sistem je našao klijente po zadatim kriterijumima.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
                 }
                 
             }
@@ -108,7 +108,26 @@ public class PrikazKlijenataController {
                 
             }
         });
-        
+        pkf.addBtnDetaljiActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = pkf.getTblKlijent().getSelectedRow();
+                if(red==-1){
+                JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijenta.", "Greška", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    
+                        JOptionPane.showMessageDialog(pkf, "Sistem je našao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                        ModelTabeleKlijent ktm  = (ModelTabeleKlijent) pkf.getTblKlijent().getModel();
+                        Klijent k = ktm.getKlijenti().get(red);
+                        Kordinator.getInstance().dodajParam("klijent", k);
+                    try {
+                        Kordinator.getInstance().otvoriDetaljiKlijentaFormu();
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrikazKlijenataController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+            }
+        });
     }
 
     public void otvoriFormu() throws Exception {
@@ -118,14 +137,14 @@ public class PrikazKlijenataController {
 
     public void pripremiFormu() throws Exception {
         List<Klijent> klijenti =    komunikacija.Komunikacija.getInstance().ucitajKlijente();
-        KlijentTableModel ktp = new KlijentTableModel(klijenti);
+        ModelTabeleKlijent ktp = new ModelTabeleKlijent(klijenti);
         pkf.getTblKlijent().setModel(ktp);
         List<NivoFizickeSpreme> lista = Komunikacija.getInstance().ucitajNivoe();
-
+        
         NivoFizickeSpreme prazno = new NivoFizickeSpreme();
         prazno.setNivo("Odaberite nivo fizičke spreme");
         lista.add(0, prazno);
-
+pkf.getCmbNivo().removeAllItems();
         for (NivoFizickeSpreme n : lista) {
             pkf.getCmbNivo().addItem(n);
         }
@@ -133,5 +152,6 @@ public class PrikazKlijenataController {
 
     public void osveziFormu() throws Exception {
         pripremiFormu();
+        
     }
 }

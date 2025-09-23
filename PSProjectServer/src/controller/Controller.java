@@ -7,13 +7,16 @@ package controller;
 import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
+import domain.Sertifikat;
 import domain.StavkaEvidencijeTreninga;
 import domain.Termin;
 import domain.Trener;
 import exception.KlijentVecPostojiException;
 import java.util.List;
+import operacije.evidencijaTreninga.AzurirajEvidencijuTreningaSO;
 import operacije.evidencijaTreninga.KreirajEvidencijuTreningaSO;
 import operacije.evidencijaTreninga.UcitajEvidencijeTreningaSO;
+import operacije.evidencijaTreninga.UcitajEvidencijeTreningaZaposlenogSO;
 import operacije.evidencijaTreninga.UcitajStavkeSO;
 import operacije.klijent.AzurirajKlijentaSO;
 import operacije.klijent.KreirajKlijentaSO;
@@ -21,6 +24,7 @@ import operacije.klijent.ObrisiKlijentaSO;
 import operacije.klijent.UcitajKlijenteSO;
 import operacije.login.LoginSO;
 import operacije.nivofizickespreme.UcitajNivoeSO;
+import operacije.sertifikat.UbaciSertifikatSO;
 import operacije.termin.UcitajTermineSO;
 import operacije.trener.UcitajTrenereSO;
 
@@ -108,6 +112,22 @@ public class Controller {
         KreirajEvidencijuTreningaSO operacija = new KreirajEvidencijuTreningaSO();
         operacija.izvrsi(ev, null);
     
+    }
+
+    public void dodajSertifikat(Sertifikat s) throws Exception {
+         UbaciSertifikatSO operacija = new UbaciSertifikatSO();
+        operacija.izvrsi(s, null);
+    }
+
+    public List<EvidencijaTreninga> ucitajEvidencijeTreningaZaposlenog(Trener ulogovani) throws Exception {
+        UcitajEvidencijeTreningaZaposlenogSO operacija = new UcitajEvidencijeTreningaZaposlenogSO();
+        operacija.izvrsi(ulogovani, null);
+        return operacija.getLista();
+    }
+
+    public void izmeniEvidencijuRadionice(EvidencijaTreninga ev) throws Exception {
+        AzurirajEvidencijuTreningaSO operacija = new AzurirajEvidencijuTreningaSO();
+        operacija.izvrsi(ev, null);
     }
     
 }

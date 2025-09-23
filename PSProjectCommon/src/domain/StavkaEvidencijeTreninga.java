@@ -26,7 +26,17 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
     private LocalTime vremeDo;
     private Long cena;
     private Termin termin;
+    StatusStavke status;
 
+    public StatusStavke getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusStavke status) {
+        this.status = status;
+    }
+    
+    
     public StavkaEvidencijeTreninga() {
     }
 
@@ -141,18 +151,32 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
         return "stavkaevidencijetreninga";
     }
 
-    @Override
-    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
-        while (rs.next()) {
-            LocalDate datum = rs.getDate("datum").toLocalDate();
-Termin t = new Termin(rs.getLong("idTermin"), datum, rs.getLong("cenaPoSatu"));
-            StavkaEvidencijeTreninga stavkaEvidencijeTreninga = new StavkaEvidencijeTreninga(rs.getLong("rb"),rs.getLong("ocena"),rs.getTime("vremeOd").toLocalTime(),rs.getTime("vremeDo").toLocalTime(),rs.getLong("cena"),t);
-            lista.add(stavkaEvidencijeTreninga);
-        }
+public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+    List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+    while (rs.next()) {
+        LocalDate datum = rs.getDate("datum").toLocalDate();
+        Termin t = new Termin(rs.getLong("idTermin"), datum, rs.getLong("cenaPoSatu"));
 
-        return lista;
+        StavkaEvidencijeTreninga stavka = new StavkaEvidencijeTreninga(
+            rs.getLong("rb"),
+            rs.getLong("ocena"),
+            rs.getTime("vremeOd").toLocalTime(),
+            rs.getTime("vremeDo").toLocalTime(),
+            rs.getLong("cena"),
+            t
+        );
+
+       
+        stavka.setStatus(StatusStavke.POSTOJECA);
+
+       
+       
+
+        lista.add(stavka);
     }
+    return lista;
+}
+
 
     @Override
     public String vratiKoloneZaUbacivanje() {

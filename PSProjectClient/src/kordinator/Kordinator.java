@@ -7,17 +7,21 @@ package kordinator;
 import controller.KreirajKlijentaController;
 import controller.LoginController;
 import controller.GlavnaFormaController;
+import controller.IzmeniEvidencijuTreningaController;
 import controller.KreirajEvidencijuTreningaController;
 import controller.PrikazEvidencijaController;
 import controller.PrikazKlijenataController;
+import controller.UbaciSertifikatController;
 import domain.Trener;
 import forme.FormaMod;
 import forme.KreirajKlijentaForma;
 import forme.LoginForma;
 import forme.GlavnaForma;
+import forme.IzmeniEvidencijuTreningaForma;
 import forme.KreirajEvidencijuTreningaForma;
 import forme.PrikazEvidencijaTreningaForma;
 import forme.PrikazKlijenataForma;
+import forme.UbaciSertifikatForma;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +39,8 @@ public class Kordinator {
     private Map<String, Object> parametri;
     private PrikazEvidencijaController peController; 
     private KreirajEvidencijuTreningaController keController;    
-            
+       private UbaciSertifikatController usController;       
+       private IzmeniEvidencijuTreningaController ieController;
             
     private Kordinator() {
         parametri = new HashMap<>();
@@ -113,7 +118,24 @@ public class Kordinator {
     keController.otvoriFormu(FormaMod.DETALJI);
     }
 
-    
+    public void otvoriUbaciSeritikatFormu() throws Exception {
+        usController = new UbaciSertifikatController(new UbaciSertifikatForma());
+        usController.otvoriFormu();
+    }
+
+    public void otvoriIzmeniEvidencijeFormu() throws Exception {
+        ieController = new IzmeniEvidencijuTreningaController(new IzmeniEvidencijuTreningaForma());
+        ieController.otvoriFormu();
+    }
+
+    public void otvoriIzmeniEvidencijeZaposlenogFormu() throws Exception {
+        keController = new KreirajEvidencijuTreningaController(new KreirajEvidencijuTreningaForma());
+    keController.otvoriFormu(FormaMod.IZMENI);
+    }
+
+    public void obrisiParam(String kljuc) {
+    parametri.remove(kljuc);
+}
     
     
 }

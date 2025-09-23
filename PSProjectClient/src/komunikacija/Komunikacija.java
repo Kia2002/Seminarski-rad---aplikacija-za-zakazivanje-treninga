@@ -7,6 +7,7 @@ package komunikacija;
 import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
+import domain.Sertifikat;
 import domain.StavkaEvidencijeTreninga;
 import domain.Termin;
 import domain.Trener;
@@ -179,6 +180,41 @@ public class Komunikacija {
         throw e;
     }
 }
+
+    public void ubaciSertifikat(Sertifikat s) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.UBACI_SERTIFIKAT, s);
+        posiljalac.posalji(zahtev);
+         Odgovor odgovor = (Odgovor) primalac.primi();
+        if(odgovor.getOdgovor()==null){
+            System.out.println("USPEŠNO");
+        }else{
+            Exception e = (Exception) odgovor.getOdgovor();
+            throw e;
+        }
+    }
+
+    public List<EvidencijaTreninga> ucitajEvidencijeTreningaZaposlenog(Trener ulogovani) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_EVIDENCIJE_ZAPOSLENOG, ulogovani);
+        List<EvidencijaTreninga> evidencije = new ArrayList<>();
+           
+        posiljalac.posalji(zahtev);
+        
+        Odgovor odg = (Odgovor) primalac.primi();
+        evidencije = (List<EvidencijaTreninga>) odg.getOdgovor();
+        return evidencije;
+    }
+
+    public void izmeniEvidenciju(EvidencijaTreninga ev) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.IZMENI_EVIDENCIJU_TRENINGA, ev);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("USPESNO");
+        } else {
+            System.out.println("NEUSPESNO");
+        }
+    }
 
         
 }

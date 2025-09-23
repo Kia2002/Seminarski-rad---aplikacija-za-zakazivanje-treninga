@@ -21,6 +21,10 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat{
     private Klijent klijent;
     private List<StavkaEvidencijeTreninga> stavke = new ArrayList<>();
 
+    public EvidencijaTreninga(Long idEvidencijaTreninga) {
+        this.idEvidencijaTreninga = idEvidencijaTreninga;
+    }
+
     public EvidencijaTreninga(Long idEvidencijaTreninga, Long ukupnaCena, Trener trener, Klijent klijent) {
         this.idEvidencijaTreninga = idEvidencijaTreninga;
         this.ukupnaCena = ukupnaCena;

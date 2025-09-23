@@ -4,6 +4,7 @@
  */
 package forme;
 
+import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.Termin;
 import domain.Trener;
@@ -19,7 +20,7 @@ import javax.swing.JTextField;
  * @author Aleksa
  */
 public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
-
+    EvidencijaTreninga evidencija;
     /**
      * Creates new form KreirajEvidencijuTreningaForma
      */
@@ -28,7 +29,16 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        evidencija = new EvidencijaTreninga();
         setTitle("Evidencija treninga");
+    }
+
+    public EvidencijaTreninga getEvidencija() {
+        return evidencija;
+    }
+
+    public void setEvidencija(EvidencijaTreninga evidencija) {
+        this.evidencija = evidencija;
     }
 
     /**
@@ -59,6 +69,8 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
         cmbOcena = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         btnDodajStavku = new javax.swing.JButton();
+        btnIzmeni = new javax.swing.JButton();
+        btnObrisiStavku = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +124,10 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
             }
         });
 
+        btnIzmeni.setText("Izmeni");
+
+        btnObrisiStavku.setText("Obrisi stavku");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,28 +145,34 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbOcena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtVremeDo)
                                 .addComponent(cmbTrener, 0, 477, Short.MAX_VALUE)
                                 .addComponent(cmbKlijent, 0, 477, Short.MAX_VALUE)
                                 .addComponent(cmbTermin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtVremeOd)))
-                        .addGap(20, 20, 20)
-                        .addComponent(btnDodajStavku))
+                                .addComponent(txtVremeOd))
+                            .addComponent(cmbOcena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnObrisiStavku)
+                            .addComponent(btnDodajStavku)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnDodaj)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnDodaj)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtUkupnaCena, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUkupnaCena, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(104, 104, 104)
+                                .addComponent(btnIzmeni))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(83, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 68, Short.MAX_VALUE)))
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,12 +196,13 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(btnDodajStavku))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbOcena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(btnDodajStavku))
+                    .addComponent(btnObrisiStavku))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,7 +211,9 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDodaj)
-                .addGap(54, 54, 54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIzmeni)
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,13 +223,13 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
             .addGap(0, 763, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 9, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 10, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -227,6 +252,22 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
         
     }//GEN-LAST:event_btnDodajStavkuActionPerformed
+
+    public JButton getBtnObrisiStavku() {
+        return btnObrisiStavku;
+    }
+
+    public void setBtnObrisiStavku(JButton btnObrisiStavku) {
+        this.btnObrisiStavku = btnObrisiStavku;
+    }
+
+    public JButton getBtnIzmeni() {
+        return btnIzmeni;
+    }
+
+    public void setBtnIzmeni(JButton btnIzmeni) {
+        this.btnIzmeni = btnIzmeni;
+    }
     
 
     public JLabel getjLabel4() {
@@ -350,10 +391,17 @@ public class KreirajEvidencijuTreningaForma extends javax.swing.JFrame {
     public void dodajAddActionListener(ActionListener actionListener) {
         btnDodaj.addActionListener(actionListener);
     }
-
+    public void obrisiStavkuAddActionListener(ActionListener actionListener) {
+        btnObrisiStavku.addActionListener(actionListener);
+    }
+    public void izmeniAddActionListener(ActionListener actionListener) {
+        btnIzmeni.addActionListener(actionListener);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDodajStavku;
+    private javax.swing.JButton btnIzmeni;
+    private javax.swing.JButton btnObrisiStavku;
     private javax.swing.JComboBox<Klijent> cmbKlijent;
     private javax.swing.JComboBox<String> cmbOcena;
     private javax.swing.JComboBox<Termin> cmbTermin;

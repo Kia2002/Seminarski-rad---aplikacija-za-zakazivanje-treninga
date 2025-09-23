@@ -19,6 +19,10 @@ public class Sertifikat implements ApstraktniDomenskiObjekat{
     private String naziv;
     private String opis;
 
+    public Sertifikat(String naziv) {
+        this.naziv = naziv;
+    }
+
     public Long getIdSertifikat() {
         return idSertifikat;
     }
@@ -125,7 +129,10 @@ public String vratiVrednostiZaUbacivanje() {
 
     @Override
     public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         Long id = rs.getLong("idSertifikat");
+    String naziv = rs.getString("naziv");
+    String opis = rs.getString("opis");
+    return new Sertifikat(id, naziv, opis);
     }
 
     @Override

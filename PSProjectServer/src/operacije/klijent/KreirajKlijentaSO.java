@@ -18,7 +18,7 @@ import operacije.ApstraktnaGenerickaOperacija;
     protected void preduslovi(Object param) throws Exception {
         if (param == null || !(param instanceof Klijent)) {
 
-            throw new Exception("Sistem ne moze da kreira klijenta.");
+            throw new Exception("Sistem ne moze da zapamti klijenta.");
         }
         
         Klijent noviKlijent = (Klijent) param;
@@ -26,7 +26,7 @@ import operacije.ApstraktnaGenerickaOperacija;
         String uslov = " JOIN nivofizickespreme ON klijent.idnivofizickespreme = nivofizickespreme.idnivofizickespreme WHERE email = '" + noviKlijent.getEmail() + "'";
         Klijent postojeci = (Klijent) broker.get(noviKlijent, uslov);
         if (postojeci != null) {
-            throw new KlijentVecPostojiException("Sistem ne moze da kreira klijenta.");
+            throw new KlijentVecPostojiException("Sistem ne moze da zapamti klijenta.");
         }
     }
     

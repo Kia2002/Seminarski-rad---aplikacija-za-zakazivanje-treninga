@@ -13,10 +13,12 @@ import controller.Controller;
 import domain.EvidencijaTreninga;
 import domain.Klijent;
 import domain.NivoFizickeSpreme;
+import domain.Sertifikat;
 import domain.StavkaEvidencijeTreninga;
 import domain.Termin;
 import domain.Trener;
 import exception.KlijentVecPostojiException;
+import exception.SertifikatVecPostojiException;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
@@ -36,7 +38,9 @@ import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static komunikacija.Operacija.DODAJ_EVIDENCIJU;
 import static komunikacija.Operacija.DODAJ_KLIJENTA;
+import static komunikacija.Operacija.UCITAJ_EVIDENCIJE;
 import static komunikacija.Operacija.UCITAJ_NIVOE;
 import static komunikacija.Operacija.UCITAJ_TRENERE;
 
@@ -122,7 +126,7 @@ public void run() {
                         break;
                         case UCITAJ_EVIDENCIJE:
                         List<EvidencijaTreninga> evidencijeTreninga = controller.Controller.getInstance().ucitajEvidencijeTreninga();  
-                        System.out.println("KLASA OKZ: "+evidencijeTreninga);
+                        
                         odgovor.setOdgovor(evidencijeTreninga);
                         break;
                         case UCITAJ_STAVKE:
@@ -151,6 +155,38 @@ public void run() {
                         }
                         
                         break;
+                        case UBACI_SERTIFIKAT:
+                            Sertifikat s = (Sertifikat) zahtev.getParametar();
+                        try {
+                            controller.Controller.getInstance().dodajSertifikat(s);
+                            odgovor.setOdgovor(null);
+
+                        } catch (SertifikatVecPostojiException kvp) {
+
+                            odgovor.setOdgovor(kvp);
+
+                        } catch (Exception excp) {
+
+                            odgovor.setOdgovor(excp);
+                        }
+                        break;
+                        case UCITAJ_EVIDENCIJE_ZAPOSLENOG:
+                            Trener ulogovani = (Trener) zahtev.getParametar();
+                        List<EvidencijaTreninga> evidencijeTreningaZaposlenog = controller.Controller.getInstance().ucitajEvidencijeTreningaZaposlenog(ulogovani);  
+                        
+                        odgovor.setOdgovor(evidencijeTreningaZaposlenog);
+                        break;
+                        case IZMENI_EVIDENCIJU_TRENINGA:
+    try {
+        EvidencijaTreninga ev = (EvidencijaTreninga) zahtev.getParametar();
+        controller.Controller.getInstance().izmeniEvidencijuRadionice(ev);
+        odgovor.setOdgovor(null); 
+    } catch(Exception ex) {
+        ex.printStackTrace();
+        odgovor.setOdgovor(ex); 
+    }
+    break;
+                        
                 default:
                     System.out.println("GRESKA, NE POSTOJI OPERACIJA");
             }

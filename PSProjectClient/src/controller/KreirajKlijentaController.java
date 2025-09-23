@@ -53,7 +53,7 @@ public class KreirajKlijentaController {
 
                 
                 if(ime.isEmpty() && prezime.isEmpty() && email.isEmpty()){
-                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da kreira klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da zapamti klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -95,7 +95,7 @@ public class KreirajKlijentaController {
               
                 try {
                     Komunikacija.getInstance().dodajKlijenta(k);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 }  catch(Exception ex) {
                     JOptionPane.showMessageDialog(dkf, ex.getMessage(), "Neuspešno", JOptionPane.ERROR_MESSAGE);
@@ -168,25 +168,13 @@ public class KreirajKlijentaController {
         });
     }
 
-    private void pripremiFormu() throws Exception {
-        List<NivoFizickeSpreme> lista = Komunikacija.getInstance().ucitajNivoe();
-
-        NivoFizickeSpreme prazno = new NivoFizickeSpreme();
-        prazno.setNivo("Odaberite kategoriju");
-        lista.add(0, prazno);
-
-        for (NivoFizickeSpreme n : lista) {
-            dkf.getCmbNivo().addItem(n);
-        }
-    }
+    
 
     private void pripremiFormu(FormaMod mod) throws Exception {
         switch(mod){
             case DODAJ: 
                 List<NivoFizickeSpreme> lista = Komunikacija.getInstance().ucitajNivoe();
-        NivoFizickeSpreme prazno = new NivoFizickeSpreme();
-        prazno.setNivo("Odaberite nivo fizičke spreme");
-        lista.add(0, prazno);
+        
         for (NivoFizickeSpreme n : lista) {
             dkf.getCmbNivo().addItem(n);
         }

@@ -77,5 +77,15 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
         this.lista = filteredList;
         fireTableDataChanged();
     }
+
+    public void pretrazi(String imeK, String prezimeK) {
+        List<EvidencijaTreninga> filteredList = lista.stream()
+            .filter(e -> (imeK == null || imeK.isEmpty() || e.getKlijent().getIme().toLowerCase().contains(imeK.toLowerCase())))
+            .filter(e -> (prezimeK == null || prezimeK.isEmpty() || e.getKlijent().getPrezime().toLowerCase().contains(prezimeK.toLowerCase())))
+            
+            .collect(Collectors.toList());
+        this.lista = filteredList;
+        fireTableDataChanged();
+    }
     
 }

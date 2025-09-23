@@ -4,11 +4,16 @@
  */
 package forme;
 
+import domain.EvidencijaTreninga;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.Timer;
 import kordinator.Kordinator;
 
@@ -23,6 +28,10 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        setResizable(false);
+        setTitle("Glavna forma");
         prikaziDatum();
         prikaziVreme();
     }
@@ -243,9 +252,130 @@ public class GlavnaForma extends javax.swing.JFrame {
         timer.start();
 
     }
+    
+
+    public JMenu getjMenu1() {
+        return jMenu1;
+    }
+
+    public void setjMenu1(JMenu jMenu1) {
+        this.jMenu1 = jMenu1;
+    }
+
+    public JMenu getjMenu2() {
+        return jMenu2;
+    }
+
+    public void setjMenu2(JMenu jMenu2) {
+        this.jMenu2 = jMenu2;
+    }
+
+    public JMenu getjMenu3() {
+        return jMenu3;
+    }
+
+    public void setjMenu3(JMenu jMenu3) {
+        this.jMenu3 = jMenu3;
+    }
+
+    public JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    public void setjMenuBar1(JMenuBar jMenuBar1) {
+        this.jMenuBar1 = jMenuBar1;
+    }
+
+    public JMenuItem getjMenuItem1() {
+        return jMenuItem1;
+    }
+
+    public void setjMenuItem1(JMenuItem jMenuItem1) {
+        this.jMenuItem1 = jMenuItem1;
+    }
+
+    public JMenuItem getjMenuItem2() {
+        return jMenuItem2;
+    }
+
+    public void setjMenuItem2(JMenuItem jMenuItem2) {
+        this.jMenuItem2 = jMenuItem2;
+    }
+
+    public JMenuItem getjMenuItem3() {
+        return jMenuItem3;
+    }
+
+    public void setjMenuItem3(JMenuItem jMenuItem3) {
+        this.jMenuItem3 = jMenuItem3;
+    }
+
+    public JMenuItem getjMenuItem4() {
+        return jMenuItem4;
+    }
+
+    public void setjMenuItem4(JMenuItem jMenuItem4) {
+        this.jMenuItem4 = jMenuItem4;
+    }
+
+    public JMenuItem getjMenuItem5() {
+        return jMenuItem5;
+    }
+
     /**
      * @param args the command line arguments
      */
+    public void setjMenuItem5(JMenuItem jMenuItem5) {
+        this.jMenuItem5 = jMenuItem5;
+    }
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public void setjButton1(JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    public JButton getjButton2() {
+        return jButton2;
+    }
+
+    public void setjButton2(JButton jButton2) {
+        this.jButton2 = jButton2;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getLblDatum() {
+        return lblDatum;
+    }
+
+    public void setLblDatum(JLabel lblDatum) {
+        this.lblDatum = lblDatum;
+    }
+
+    public JLabel getLblVreme() {
+        return lblVreme;
+    }
+
+    public void setLblVreme(JLabel lblVreme) {
+        this.lblVreme = lblVreme;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -35,7 +36,7 @@ public class LoginForma extends javax.swing.JPanel {
         initComponents();
         btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+      
         
         
     }
@@ -169,4 +170,21 @@ public class LoginForma extends javax.swing.JPanel {
     public void loginAddActionListener(ActionListener actionListener) {
         btnLogin.addActionListener(actionListener);
     }
+
+    public JLabel getLblPassword() {
+        return lblPassword;
+    }
+
+    public void setLblPassword(JLabel lblPassword) {
+        this.lblPassword = lblPassword;
+    }
+
+    public JLabel getLblUsername() {
+        return lblUsername;
+    }
+
+    public void setLblUsername(JLabel lblUsername) {
+        this.lblUsername = lblUsername;
+    }
+    
 }

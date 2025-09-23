@@ -8,9 +8,17 @@ import domain.Klijent;
 import domain.NivoFizickeSpreme;
 import domain.Sertifikat;
 import forme.UbaciSertifikatForma;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import komunikacija.Komunikacija;
 
 /**
@@ -23,7 +31,39 @@ public class UbaciSertifikatController {
     public UbaciSertifikatController(UbaciSertifikatForma usf) {
         this.usf = usf;
         addActionListener();
+        applyTheme();
     }
+    
+    private void applyTheme() {
+   
+    JButton[] buttons = { usf.getBtnDodaj() };
+    for (JButton b : buttons) {
+        b.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        b.setBackground(new Color(45, 137, 239));
+        b.setForeground(Color.WHITE);
+        b.setFocusPainted(false);
+        b.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        b.setPreferredSize(new Dimension(140, 35));
+    }
+
+   
+    JTextField[] textFields = { usf.getTxtNaziv() };
+    for (JTextField tf : textFields) {
+        tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tf.setBackground(Color.WHITE);
+    }
+
+    
+    JTextArea[] textAreas = { usf.getTxtOpis() };
+    for (JTextArea ta : textAreas) {
+        ta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        ta.setBackground(Color.WHITE);
+    }
+
+   
+    usf.getContentPane().setBackground(new Color(245, 245, 245));
+}
+
     
     public void otvoriFormu() throws Exception {
       

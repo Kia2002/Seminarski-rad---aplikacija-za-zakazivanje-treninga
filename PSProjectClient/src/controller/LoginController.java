@@ -8,6 +8,9 @@ import komunikacija.Komunikacija;
 import kordinator.Kordinator;
 import domain.Trener;
 import forme.LoginForma;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -25,9 +28,40 @@ public class LoginController {
 
     public LoginController(LoginForma lf) {
         this.lf = lf;
+        customizeUI();
         addActionListener();
     }
+    
+    private void customizeUI() {
+    Font fontLabel = new Font("Segoe UI", Font.PLAIN, 14);
+    Font fontInput = new Font("Segoe UI", Font.PLAIN, 14);
+    Font fontButton = new Font("Segoe UI", Font.BOLD, 14);
 
+    lf.getLblUsername().setFont(fontLabel);
+    lf.getLblPassword().setFont(fontLabel);
+    lf.getTxtUsername().setFont(fontInput);
+    lf.getTxtPassword().setFont(fontInput);
+    lf.getBtnLogin().setFont(fontButton);
+    lf.getBtnCancel().setFont(fontButton);
+
+    
+    lf.getBtnLogin().setBackground(new Color(70, 130, 180));
+    lf.getBtnLogin().setForeground(Color.WHITE);
+    lf.getBtnLogin().setContentAreaFilled(true);
+    lf.getBtnCancel().setBackground(new Color(220, 53, 69));
+    lf.getBtnCancel().setForeground(Color.WHITE);
+    lf.getBtnCancel().setContentAreaFilled(true);
+
+    
+    lf.setOpaque(true);  
+    lf.setBackground(new Color(245, 245, 245));
+
+    
+    lf.getBtnLogin().setCursor(new Cursor(Cursor.HAND_CURSOR));
+    lf.getBtnCancel().setCursor(new Cursor(Cursor.HAND_CURSOR));
+    lf.setOpaque(true);
+    lf.setBackground(new Color(245, 245, 245));
+}
     private void addActionListener() {
         lf.loginAddActionListener(e -> login());
     }

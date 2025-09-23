@@ -12,6 +12,9 @@ import forme.PrikazKlijenataForma;
 import forme.model.ModelTabeleEvidencijeTreninga;
 import forme.model.ModelTabeleKlijent;
 import forme.model.StavkaTableModel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,7 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import komunikacija.Komunikacija;
 import kordinator.Kordinator;
 
@@ -36,7 +43,47 @@ public class PrikazEvidencijaController {
         this.pef = pef;
         addActionListener();
         addMouseListener();
+        applyTheme();
     }
+    
+    private void applyTheme() {
+    
+    JButton[] buttons = {
+        pef.getBtnPretrazi(),
+        pef.getBtnResetuj(),
+        pef.getBtnDetalji()
+    };
+    for (JButton b : buttons) {
+        b.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        b.setBackground(new Color(45, 137, 239)); 
+        b.setForeground(Color.WHITE);
+        b.setFocusPainted(false);
+        b.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        b.setPreferredSize(new Dimension(140, 35));
+    }
+
+   
+    JTextField[] textFields = {
+        pef.getTxtIme(),
+        pef.getTxtPrezime(),
+        pef.getTxtImeTrener(),
+        pef.getTxtPrezimeTrener()
+    };
+    for (JTextField tf : textFields) {
+        tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tf.setBackground(new Color(245, 245, 245));
+    }
+
+    
+    JTable[] tables = {pef.getTblEvidencije(), pef.getTblStavke()};
+    for (JTable t : tables) {
+        t.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        t.setRowHeight(25);
+    }
+
+   
+    pef.setBackground(new Color(245, 245, 245));
+}
      public void otvoriFormu() throws Exception {
         pripremiFormu();
         pef.setVisible(true);

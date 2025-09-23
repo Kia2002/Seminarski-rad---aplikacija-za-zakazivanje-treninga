@@ -13,10 +13,17 @@ import static forme.FormaMod.IZMENI;
 import forme.KreirajKlijentaForma;
 import forme.PrikazKlijenataForma;
 import forme.model.ModelTabeleKlijent;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import komunikacija.Komunikacija;
 import kordinator.Kordinator;
@@ -31,8 +38,37 @@ public class KreirajKlijentaController {
     public KreirajKlijentaController(KreirajKlijentaForma dkf) {
         this.dkf = dkf;
         addActionListener();
+        applyTheme();
+    }
+private void applyTheme() {
+    
+    JButton[] buttons = {dkf.getBtnDodaj(), dkf.getBtnAzuriraj()};
+    for (JButton b : buttons) {
+        b.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        b.setBackground(new Color(45, 137, 239)); 
+        b.setForeground(Color.WHITE);
+        b.setFocusPainted(false);
+        b.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        b.setPreferredSize(new Dimension(140, 35));
     }
 
+    
+    JTextField[] textFields = {dkf.getTxtIme(), dkf.getTxtPrezime(), dkf.getTxtEmail(), dkf.getTxtId()};
+    for (JTextField tf : textFields) {
+        tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tf.setBackground(new Color(245, 245, 245));
+    }
+
+    
+    JComboBox<?>[] combos = {dkf.getCmbNivo()};
+    for (JComboBox<?> cb : combos) {
+        cb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        cb.setBackground(Color.WHITE);
+    }
+
+    
+    dkf.setBackground(new Color(245, 245, 245));
+}
     public void otvoriFormu(FormaMod mod) throws Exception {
       
         pripremiFormu(mod);

@@ -10,12 +10,20 @@ import domain.Trener;
 import forme.GlavnaForma;
 import forme.PrikazKlijenataForma;
 import forme.model.ModelTabeleKlijent;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import komunikacija.Komunikacija;
 import kordinator.Kordinator;
 
@@ -30,7 +38,54 @@ public class PrikazKlijenataController {
     public PrikazKlijenataController(PrikazKlijenataForma pkf) {
         this.pkf = pkf;
         addActionListener();
+        applyTheme();
     }
+private void applyTheme() {
+    
+    JButton[] buttons = {
+        pkf.getBtnPretrazi(),
+        pkf.getBtnResetuj(),
+        pkf.getBtnDetalji(),
+        pkf.getBtnAzuriraj(),
+        pkf.getBtnObrisi()
+    };
+    for (JButton b : buttons) {
+        b.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        b.setBackground(new Color(45, 137, 239));
+        b.setForeground(Color.WHITE);
+        b.setFocusPainted(false);
+        b.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        b.setPreferredSize(new Dimension(140, 35));
+    }
+
+   
+    JTextField[] textFields = {
+        pkf.getTxtIme(),
+        pkf.getTxtPrezime(),
+        pkf.getTxtEmail()
+    };
+    for (JTextField tf : textFields) {
+        tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tf.setBackground(Color.WHITE);
+    }
+
+   
+    JComboBox<?>[] combos = { pkf.getCmbNivo() };
+    for (JComboBox<?> cb : combos) {
+        cb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        cb.setBackground(Color.WHITE);
+    }
+
+  
+    JTable[] tables = { pkf.getTblKlijent() };
+    for (JTable t : tables) {
+        t.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        t.setRowHeight(25);
+    }
+
+    
+    pkf.getContentPane().setBackground(new Color(245, 245, 245));
+}
 
     private void addActionListener() {
         pkf.addBtnObrisiActionListener(new ActionListener() {

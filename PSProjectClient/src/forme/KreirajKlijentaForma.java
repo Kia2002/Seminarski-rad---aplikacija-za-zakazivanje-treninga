@@ -4,6 +4,7 @@
  */
 package forme;
 
+import domain.EvidencijaTreninga;
 import domain.NivoFizickeSpreme;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -26,6 +27,7 @@ public class KreirajKlijentaForma extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setTitle("Klijent");
+        
     }
 
     /**
@@ -97,7 +99,7 @@ public class KreirajKlijentaForma extends javax.swing.JFrame {
                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                             .addComponent(cmbNivo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +128,7 @@ public class KreirajKlijentaForma extends javax.swing.JFrame {
                 .addComponent(btnDodaj)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAzuriraj)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();

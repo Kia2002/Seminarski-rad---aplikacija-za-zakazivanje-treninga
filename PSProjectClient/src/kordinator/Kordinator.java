@@ -22,8 +22,11 @@ import forme.KreirajEvidencijuTreningaForma;
 import forme.PrikazEvidencijaTreningaForma;
 import forme.PrikazKlijenataForma;
 import forme.UbaciSertifikatForma;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.UIManager;
 
 /**
  *
@@ -42,15 +45,26 @@ public class Kordinator {
        private UbaciSertifikatController usController;       
        private IzmeniEvidencijuTreningaController ieController;
             
+       
+       
+       
     private Kordinator() {
         parametri = new HashMap<>();
     }
-    
+    public static void applyGlobalTheme() {
+    UIManager.put("OptionPane.background", Color.WHITE);
+    UIManager.put("Panel.background", Color.WHITE);
+    UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 14));
+    UIManager.put("OptionPane.buttonFont", new Font("Segoe UI", Font.BOLD, 14));
+    UIManager.put("Button.background", new Color(45, 137, 239));
+    UIManager.put("Button.foreground", Color.WHITE);
+    UIManager.put("Button.focusPainted", false);
+}
     public static Kordinator getInstance(){
     
     if(instance == null){
     instance = new Kordinator();
-    
+    applyGlobalTheme();
     }
     return instance;
     }

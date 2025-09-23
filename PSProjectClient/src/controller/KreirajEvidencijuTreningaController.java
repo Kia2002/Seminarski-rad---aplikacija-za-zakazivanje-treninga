@@ -19,6 +19,9 @@ import forme.KreirajEvidencijuTreningaForma;
 import forme.KreirajKlijentaForma;
 import forme.model.ModelTabeleEvidencijeTreninga;
 import forme.model.StavkaTableModel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
@@ -28,7 +31,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import komunikacija.Komunikacija;
 import kordinator.Kordinator;
 
@@ -48,8 +56,50 @@ public class KreirajEvidencijuTreningaController {
     public KreirajEvidencijuTreningaController(KreirajEvidencijuTreningaForma def) {
         this.def = def;
         addActionListener();
+        applyTheme(); 
+    }
+    
+    private void applyTheme() {
+    
+    JButton[] buttons = {
+        def.getBtnDodaj(), def.getBtnDodajStavku(),
+        def.getBtnIzmeni(), def.getBtnObrisiStavku()
+    };
+    for (JButton b : buttons) {
+        b.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        b.setBackground(new Color(45, 137, 239)); 
+        b.setForeground(Color.WHITE);
+        b.setFocusPainted(false);
+        b.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        Dimension dim = new Dimension(140, 35); 
+        b.setPreferredSize(dim);
     }
 
+    
+    JTextField[] textFields = {def.getTxtVremeOd(), def.getTxtVremeDo(), def.getTxtUkupnaCena()};
+    for (JTextField tf : textFields) {
+        tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tf.setBackground(new Color(245, 245, 245));
+    }
+
+    JComboBox<?>[] combos = {def.getCmbTermin(), def.getCmbOcena(), def.getCmbTrener(), def.getCmbKlijent()};
+    for (JComboBox<?> cb : combos) {
+        cb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        cb.setBackground(Color.WHITE);
+    }
+
+ 
+    JTable[] tables = {def.getTblStavke()};
+    for (JTable t : tables) {
+        t.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        t.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        t.setRowHeight(25);
+    }
+
+   
+    def.setBackground(new Color(245, 245, 245)); 
+}
+    
     public void otvoriFormu(FormaMod mod) throws Exception {
         pripremiFormu(mod);
         def.setVisible(true);

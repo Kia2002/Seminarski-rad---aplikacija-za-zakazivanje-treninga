@@ -56,7 +56,7 @@ public class DatabaseConfigForm extends javax.swing.JDialog {
 
         jLabel3.setText("password:");
 
-        btnSave.setText("Save");
+        btnSave.setText("Sacuvaj");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);

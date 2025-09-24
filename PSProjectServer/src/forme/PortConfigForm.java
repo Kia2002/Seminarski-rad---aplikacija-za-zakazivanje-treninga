@@ -45,7 +45,7 @@ public class PortConfigForm extends javax.swing.JDialog {
 
         jLabel1.setText("Port:");
 
-        btnSave.setText("Save");
+        btnSave.setText("Sacuvaj");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);

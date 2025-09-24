@@ -6,12 +6,12 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Configuration"/>
+            <Property name="text" type="java.lang.String" value="Konfiguracija"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Database"/>
+                <Property name="text" type="java.lang.String" value="Baza"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -61,7 +61,7 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="151" max="32767" attributes="0"/>
+                      <EmptySpace pref="115" max="32767" attributes="0"/>
                       <Component id="btnStop" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
@@ -95,7 +95,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnStart">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start server"/>
+        <Property name="text" type="java.lang.String" value="Pokreni server"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStartActionPerformed"/>
@@ -103,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnStop">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Stop server"/>
+        <Property name="text" type="java.lang.String" value="Zaustavi server"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStopActionPerformed"/>

@@ -61,6 +61,9 @@ public class Termin implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
+        if (idTermin == 0L) {
+        return "Odaberite termin";
+    }
         return "Datum: " + datum + " Cena po satu: " + cenaPoSatu;
     }
 

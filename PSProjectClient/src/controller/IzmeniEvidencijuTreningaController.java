@@ -5,7 +5,10 @@
 package controller;
 
 import domain.EvidencijaTreninga;
+import domain.Klijent;
+import domain.NivoFizickeSpreme;
 import domain.StavkaEvidencijeTreninga;
+import domain.Termin;
 import domain.Trener;
 import forme.IzmeniEvidencijuTreningaForma;
 import forme.PrikazEvidencijaTreningaForma;
@@ -22,6 +25,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import kordinator.Kordinator;
@@ -44,8 +48,12 @@ public class IzmeniEvidencijuTreningaController {
         Font fontButton = new Font("Segoe UI", Font.BOLD, 14);
 
        
-        ief.getTxtIme().setFont(fontLabel);
-        ief.getTxtPrezime().setFont(fontLabel);
+        JComboBox<?>[] combos = {ief.getCmbKlijent()};
+    for (JComboBox<?> cb : combos) {
+        cb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        cb.setBackground(Color.WHITE);
+    }
+    
         ief.getBtnPretrazi().setFont(fontButton);
         ief.getBtnResetuj().setFont(fontButton);
         ief.getBtnIzmeni().setFont(fontButton);
@@ -105,6 +113,23 @@ public class IzmeniEvidencijuTreningaController {
         List<StavkaEvidencijeTreninga> stavke = new ArrayList<>();
           StavkaTableModel mts = new StavkaTableModel(stavke);
         ief.getTblStavke().setModel(mts);
+        List<Trener> treneri = Komunikacija.getInstance().ucitajTrenere();
+        
+        
+        
+        
+        
+        List<Klijent> klijenti = Komunikacija.getInstance().ucitajKlijente();
+        Klijent prazno = new Klijent();
+        prazno.setIme("Odaberite klijenta");
+        klijenti.add(0, prazno);
+        ief.getCmbKlijent().removeAllItems();
+        for (Klijent k : klijenti) {
+            ief.getCmbKlijent().addItem(k);
+        }
+        
+        
+        
     }
       
       
@@ -112,14 +137,13 @@ public class IzmeniEvidencijuTreningaController {
         ief.addBtnPretraziActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String imeK = ief.getTxtIme().getText().trim();
-                String prezimeK = ief.getTxtPrezime().getText().trim();
+                Klijent k = (Klijent) ief.getCmbKlijent().getSelectedItem();
                 
                 
                 
                 ModelTabeleEvidencijeTreninga mte = (ModelTabeleEvidencijeTreninga) ief.getTblEvidencije().getModel();
-                mte.pretrazi(imeK,prezimeK);
                 
+                mte.pretrazi(k);
                 if (mte.getLista().isEmpty()) {
                     JOptionPane.showMessageDialog(ief, "Sistem ne može da nađe evidencije treninga po zadatim kriterijumima.", "Neuspešno", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -136,8 +160,8 @@ public class IzmeniEvidencijuTreningaController {
                 } catch (Exception ex) {
                     Logger.getLogger(PrikazKlijenataController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                ief.getTxtIme().setText("");
-                ief.getTxtPrezime().setText("");
+                ief.getCmbKlijent().setSelectedIndex(0);
+               
                 
                 
             }

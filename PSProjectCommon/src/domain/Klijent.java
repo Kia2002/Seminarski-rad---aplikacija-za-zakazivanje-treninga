@@ -81,6 +81,9 @@ public class Klijent implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
+        if(ime=="Odaberite klijenta"){
+        return ime;
+        }
         return ime+" "+prezime;
     }
 

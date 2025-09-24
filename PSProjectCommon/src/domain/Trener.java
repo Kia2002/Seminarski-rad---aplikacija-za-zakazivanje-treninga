@@ -21,6 +21,28 @@ public class Trener implements ApstraktniDomenskiObjekat{
     private String korisnickoIme;
     private String sifra;
     private String email;
+    
+    public Trener(String korisnickoIme, String sifra) {
+        this.korisnickoIme = korisnickoIme;
+        this.sifra = sifra;
+    }
+
+    public Trener(Long idTrener, String ime, String prezime, String korisnickoIme, String sifra, String email) {
+        this.idTrener = idTrener;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.korisnickoIme = korisnickoIme;
+        this.sifra = sifra;
+        this.email = email;
+    }
+
+    public Trener(String ime, String prezime, String korisnickoIme, String sifra, String email) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.korisnickoIme = korisnickoIme;
+        this.sifra = sifra;
+        this.email = email;
+    }
 
     public Long getIdTrener() {
         return idTrener;
@@ -73,27 +95,7 @@ public class Trener implements ApstraktniDomenskiObjekat{
     public Trener() {
     }
 
-    public Trener(String korisnickoIme, String sifra) {
-        this.korisnickoIme = korisnickoIme;
-        this.sifra = sifra;
-    }
-
-    public Trener(Long idTrener, String ime, String prezime, String korisnickoIme, String sifra, String email) {
-        this.idTrener = idTrener;
-        this.ime = ime;
-        this.prezime = prezime;
-        this.korisnickoIme = korisnickoIme;
-        this.sifra = sifra;
-        this.email = email;
-    }
-
-    public Trener(String ime, String prezime, String korisnickoIme, String sifra, String email) {
-        this.ime = ime;
-        this.prezime = prezime;
-        this.korisnickoIme = korisnickoIme;
-        this.sifra = sifra;
-        this.email = email;
-    }
+    
 
     @Override
     public String toString() {

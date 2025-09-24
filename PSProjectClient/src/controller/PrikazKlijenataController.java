@@ -101,7 +101,7 @@ private void applyTheme() {
                         Klijent k = ktm.getKlijenti().get(red);
                         try {
                         komunikacija.Komunikacija.getInstance().obrisiKlijenta(k);
-                        JOptionPane.showMessageDialog(pkf, "Sistem je uspešno obrisao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE); 
+                        JOptionPane.showMessageDialog(pkf, "Sistem je obrisao klijenta.", "Uspešno", JOptionPane.INFORMATION_MESSAGE); 
                         pripremiFormu();
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(pkf, "Sistem ne može da obriše klijenta.", "Neuspešno", JOptionPane.ERROR_MESSAGE); 

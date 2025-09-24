@@ -186,7 +186,7 @@ private void addActionListener() {
                 ev.setUkupnaCena(modelTabele.getUkupnaCena());
                 if (stavke.isEmpty()) {
                     JOptionPane.showMessageDialog(null,
-                            "Sistem ne može da kreira evidenciju treninga.",
+                            "Sistem ne može da zapamti evidenciju treninga.",
                             "Greška",
                             JOptionPane.ERROR_MESSAGE);
                     return;
@@ -194,7 +194,7 @@ private void addActionListener() {
                 ev.setStavke(stavke);
                 try {
                     Komunikacija.getInstance().kreirajEvidenciju(ev);
-                    JOptionPane.showMessageDialog(def, "Sistem je kreirao evidenciju treninga.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(def, "Sistem je zapamtio evidenciju treninga.", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
                     def.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(def, ex.getMessage(), "Neuspešno", JOptionPane.ERROR_MESSAGE);
@@ -202,7 +202,7 @@ private void addActionListener() {
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Sistem ne može da kreira evidenciju treninga", "Greška", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga", "Greška", JOptionPane.ERROR_MESSAGE);
             }
         }
     });
@@ -241,10 +241,10 @@ private void addActionListener() {
                 ev.setTrener(trener);
                 ev.setKlijent(klijent);
 
-                StavkaTableModel stm = (StavkaTableModel) def.getTblStavke().getModel();
-                ev.setStavke(stm.getStavke());
+                modelTabele = (StavkaTableModel) def.getTblStavke().getModel();
+                ev.setStavke(modelTabele.getStavke());
 
-                if (stavke.isEmpty()) {
+                if (modelTabele.getAktivneStavke().isEmpty()) {
                     JOptionPane.showMessageDialog(def, "Sistem ne može da zapamti evidenciju treninga", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }

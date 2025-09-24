@@ -45,14 +45,14 @@ Server server;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnStart.setText("Start server");
+        btnStart.setText("Pokreni server");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartActionPerformed(evt);
             }
         });
 
-        btnStop.setText("Stop server");
+        btnStop.setText("Zaustavi server");
         btnStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStopActionPerformed(evt);
@@ -63,9 +63,9 @@ Server server;
 
         lblStatus.setText("jLabel2");
 
-        jMenu1.setText("Configuration");
+        jMenu1.setText("Konfiguracija");
 
-        jMenuItem1.setText("Database");
+        jMenuItem1.setText("Baza");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -96,7 +96,7 @@ Server server;
                     .addComponent(btnStart))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(btnStop)
                         .addGap(49, 49, 49))
                     .addGroup(layout.createSequentialGroup()
@@ -133,14 +133,14 @@ Server server;
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         server.start();
-        lblStatus.setText("Server is running!");
+        lblStatus.setText("Server je pokrenut!");
         btnStop.setEnabled(true);
         btnStart.setEnabled(false);
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
         server.zaustaviServer();
-        lblStatus.setText("Server has been stopped.");
+        lblStatus.setText("Server je zaustavljen.");
         btnStart.setEnabled(true);
          btnStop.setEnabled(false);
     }//GEN-LAST:event_btnStopActionPerformed

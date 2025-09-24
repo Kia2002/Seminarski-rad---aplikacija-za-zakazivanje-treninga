@@ -6,8 +6,10 @@ package forme.model;
 
 import domain.EvidencijaTreninga;
 import domain.Klijent;
+import domain.Termin;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
@@ -87,5 +89,23 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
         this.lista = filteredList;
         fireTableDataChanged();
     }
+
+    public void pretrazi(Klijent k) {
+    Klijent placeholderKlijent = new Klijent();
+    placeholderKlijent.setIme("Odaberite klijenta");
+
+    List<EvidencijaTreninga> filteredList = lista.stream()
+        
+        .filter(l -> k == null 
+                     || "Odaberite klijenta".equals(k.getIme()) 
+                     || l.getKlijent().equals(k))
+        
+        
+
+        .collect(Collectors.toList());
+
+    this.lista = filteredList;
+    fireTableDataChanged();
+}
     
 }

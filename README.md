@@ -1,75 +1,89 @@
-# Softverski Sistem za Zakazivanje Treninga (Java - Klijent/Server)
+# Personal Training Scheduler
 
-## Opis Projekta
+A Java-based client-server application for managing clients, trainers, and personal training session scheduling. Built as a university software engineering project.
 
-Ovo je softverski sistem za upravljanje klijentima, trenerima i zakazivanje personalnih treninga, razvijen u **Klijent-Server arhitekturi**.
+## Overview
 
-Aplikacija je razvijena u **Java** programskom jeziku i koristi **MySQL** bazu podataka za perzistenciju svih informacija.
+The Personal Training Scheduler provides a desktop interface for fitness facilities to manage their trainer roster, client base, and session bookings. The system is split into three modules — a shared common library, a server application with a configurable MySQL connection, and a client application for end users.
 
-## Tehnologije
+## Tech Stack
 
-* **Programski jezik:** Java
-* **Baza podataka:** MySQL Server (Preporučena verzija 8.0+)
-* **Konekcija:** JDBC (Potreban MySQL Connector/J drajver)
-* **Arhitektura:** Klijent/Server (Zahteva pokretanje dva zasebna dela)
-* **Projekti:** PSProjectServer (Serverski deo), PSProjectClient (Klijentski deo), PSProjectCommon(Zajednički deo)
+| Component | Technology |
+|---|---|
+| Language | Java |
+| Database | MySQL 8.0+ |
+| Connectivity | JDBC (MySQL Connector/J) |
+| Architecture | Client/Server (two separate runnable applications) |
 
-## Potrebno za pokretanje
+**Modules:**
 
-Za testiranje aplikacije, potrebno je da imate instalirano i podešeno sledeće:
-1. **Java Development Kit (JDK) 8 ili noviji.**
-2. **MySQL Server (preporučena verzija 8.0+).**
-3. **IDE** (IntelliJ IDEA, Eclipse, NetBeans) za uvoz i pokretanje Java projekta.
+| Module | Description |
+|---|---|
+| `PSProjectCommon` | Shared data models and utilities used by both server and client |
+| `PSProjectServer` | Server application; manages the database connection and handles client requests |
+| `PSProjectClient` | Client application; provides the user-facing GUI |
 
-## Postavljanje baze podataka
+## Prerequisites
 
-Pošto fajlovi baze nisu deo Git repozitorijuma, morate ručno kreirati bazu koristeći priloženi SQL skript.
+Before running the application, ensure the following are installed and configured:
 
-### 1. Preuzmite SQL skriptu
+- **JDK 23** or later
+- **MySQL Server 8.0+**
+- **MySQL Connector/J** driver (JDBC)
+- An IDE such as IntelliJ IDEA, Eclipse, or NetBeans
 
-U korenu ovog projekta nalazi se fajl: **`baza.sql`**.
+## Database Setup
 
-### 2. Izvršite skriptu na svom MySQL Serveru
+The database schema is not tracked in the repository. You must create it manually using the provided SQL script.
 
-1. **Pokrenite MySQL Server.**
-2. **Uvezite fajl `baza.sql`** koristeći bilo koji SQL klijent (npr. MySQL Workbench, SQLYog, PhpMyAdmin) ili komandnu liniju.
+1. Locate the `baza.sql` file in the project root.
+2. Start your MySQL Server instance.
+3. Import the script using your preferred client (MySQL Workbench, SQLYog, phpMyAdmin) or via the command line:
+   ```bash
+   mysql -u root -p < baza.sql
+   ```
 
-   *Ovaj skript će:*
-   * Kreirati bazu pod nazivom **`projekat`**.
-   * Kreirati sve potrebne tabele (`trener`, `klijent`, `evidencija treninga`, itd.).
-   * Ubaciti početne podatke za testiranje (test klijente/trenere).
+The script will:
+- Create a database named `projekat`
+- Create all required tables (`trener`, `klijent`, `evidencija_treninga`, etc.)
+- Seed initial test data for trainers and clients
 
-## Pokretanje Aplikacije i Konfiguracija Konekcije
+## Running the Application
 
-Aplikacija se pokreće u dva koraka. Serverski deo mora biti pokrenut i konfigurisan pre klijentskog dela.
+The server must be started and configured before launching the client.
 
-### 1. Pokretanje i Konfiguracija Serverskog Dela
+### Step 1 — Start and Configure the Server
 
-1.  Uvezite projekat u vaš IDE.
-2.  Pronađite i pokrenite glavnu klasu Serverskog dela:
-    * **Projekat:** `PSProjectServer`
-    * **Klasa:** `main.Main.java`
-3.  Otvoriće se forma za upravljanje serverom.
-4.  Idite na karticu **Konfiguracija**. Ovde možete prilagoditi port, URL, lozinku i korisničko ime baze prema vašoj lokalnoj MySQL instalaciji.
-5.  Pritiskom na dugme **Sačuvaj** trajno se menja `config.properties` fajl na serverskoj strani.
-6.  Vratite se na karticu za upravljanje i pritisnite dugme **Pokreni Server**.
+1. Import all three modules into your IDE.
+2. In the `PSProjectServer` module, run `main/Main.java`.
+3. The server management window will open.
+4. Navigate to the **Configuration** tab and update the following fields to match your local MySQL setup:
+   - Port
+   - Database URL
+   - Username
+   - Password
+5. Click **Save** to persist the configuration to `config.properties`.
+6. Switch to the management tab and click **Start Server**.
 
-### 2. Pokretanje Klijentskog Dela
+### Step 2 — Start the Client
 
-1.  Pronađite i pokrenite glavnu klasu Klijentskog dela:
-    * **Projekat:** `PSProjectClient`
-    * **Klasa:** `main.Main.java`
-2.  Nakon pokretanja, trebalo bi da se otvori prozor za prijavu.
+1. In the `PSProjectClient` module, run `main/Main.java`.
+2. The login window will open.
+3. Use one of the test credentials below to sign in.
 
-*Napomena: Ako serverski deo koristi određeni port (npr. 9000), proverite da li je taj port slobodan pre pokretanja.*
+> **Note:** Ensure the port configured on the server is not blocked by a firewall or occupied by another process (default: `9000`).
 
-## Test Kredencijali (Treneri)
+## Test Credentials
 
-Za prijavu u sistem, možete koristiti sledeće korisnike:
+The following trainer accounts are pre-seeded by the database script:
 
-| Korisničko ime | Lozinka | Email |
-| :--- | :--- | :--- |
-| **`marko123`** | `marko123` | `marko@gmail.com` |
-| **`nikola123`** | `nikola123` | `nikola@gmail.com` |
-| **`aleksa123`** | `aleksa123` | `aleksa@gmail.com` |
-| **`filip123`** | `filip123` | `filip@gmail.com` |
+| Username | Password | Email |
+|---|---|---|
+| `marko123` | `marko123` | marko@gmail.com |
+| `nikola123` | `nikola123` | nikola@gmail.com |
+| `aleksa123` | `aleksa123` | aleksa@gmail.com |
+| `filip123` | `filip123` | filip@gmail.com |
+
+## License
+
+This project is intended for educational and portfolio purposes.
